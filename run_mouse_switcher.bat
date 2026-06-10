@@ -176,7 +176,7 @@ def on_press(key):
     global ctrl_pressed_time, other_key_pressed
     if key in (keyboard.Key.ctrl_l, keyboard.Key.ctrl_r):
         if ctrl_pressed_time == 0.0:
-            ctrl_pressed_time = time.time()
+            ctrl_pressed_time = tigime.time()
             other_key_pressed = False
     else:
         # Any other key pressed while Ctrl is down prevents the tap action
