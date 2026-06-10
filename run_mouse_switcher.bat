@@ -42,7 +42,8 @@ if not exist ".venv\Scripts\activate.bat" (
 call .venv\Scripts\activate.bat
 
 :: 4. Extract the embedded Python script to the .venv folder so it's hidden
-powershell -Command "$path = $args[0]; $text = (Get-Content $path -Raw) -split '(?m)^:__PYTHON_PAYLOAD__\r?\n'; if($text.Length -gt 1) { [IO.File]::WriteAllText('.venv\mouse_switcher.py', $text[1]) }" "%~f0"
+set "SCRIPT_PATH=%~f0"
+powershell -Command "$text = (Get-Content -LiteralPath $env:SCRIPT_PATH -Raw) -split '(?m)^:__PYTHON_PAYLOAD__\r?\n'; if($text.Length -gt 1) { [IO.File]::WriteAllText('.venv\mouse_switcher.py', $text[1]) }"
 
 :: 5. Install dependencies
 echo Checking dependencies...
